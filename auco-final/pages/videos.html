@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Videos Tutoriales — AUCO Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#F4F6FA;color:#1E2E45;overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* --- TOKENS --- */
+:root{
+  --P:#1B6AFF;--PD:#1250CC;--PBG:#EBF1FF;--PBD:rgba(27,106,255,.2);
+  --G:#00C896;--GBG:#E5FAF5;--GBD:rgba(0,200,150,.2);
+  --BG:#F4F6FA;--W:#fff;--S:#F0F4FB;
+  --BD:#E0E7F0;--T:#1E2E45;--M:#566A85;--D:#9AAABB;
+  --nav:66px;
+  --r:12px;--rl:18px;--rr:999px;
+  --s0:0 1px 3px rgba(30,46,69,.06);
+  --s1:0 2px 14px rgba(30,46,69,.09);
+  --s2:0 6px 30px rgba(30,46,69,.13);
+  --sb:0 4px 20px rgba(27,106,255,.3);
+}
+
+/* --- NAV --- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:999;
+  background:rgba(255,255,255,.98);border-bottom:1px solid var(--BD);box-shadow:var(--s0)}
+.ni{max-width:1120px;margin:0 auto;padding:0 24px;height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif}
+.bw{font-size:20px;font-weight:800;color:var(--P);letter-spacing:-.02em}
+.bs{width:1px;height:18px;background:var(--BD)}
+.bl{font-size:13px;font-weight:600;color:var(--M)}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--G);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
+.nlinks{display:flex;gap:2px}
+.nl{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:10px;
+  font-size:14px;font-weight:500;color:var(--M);transition:.15s}
+.nl:hover{color:var(--T);background:var(--BG)}
+.nl.active{color:var(--P);background:var(--PBG);font-weight:600}
+
+/* --- BUTTONS --- */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:var(--r);
+  font-family:'Sora',sans-serif;font-size:13px;font-weight:700;
+  border:none;cursor:pointer;transition:.2s;white-space:nowrap}
+.bp{background:var(--P);color:#fff;box-shadow:var(--sb)}
+.bp:hover{background:var(--PD);transform:translateY(-1px);box-shadow:0 6px 24px rgba(27,106,255,.38)}
+.bo{background:var(--W);color:var(--M);border:1.5px solid var(--BD);box-shadow:var(--s0)}
+.bo:hover{border-color:var(--P);color:var(--P);background:var(--PBG)}
+.bsm{padding:7px 15px;font-size:13px}
+.blg{padding:13px 26px;font-size:15px}
+
+/* --- LAYOUT --- */
+.ctr{max-width:1120px;margin:0 auto;padding:0 24px}
+.pt{padding-top:var(--nav)}
+.sec{padding:72px 0}
+.secw{background:var(--W)}
+.gr{background:linear-gradient(150deg,#EEF4FF 0%,#FAFBFF 45%,#E5FAF5 100%)}
+
+/* --- TYPOGRAPHY --- */
+.tag{display:inline-flex;align-items:center;gap:5px;background:var(--PBG);
+  border:1px solid var(--PBD);color:var(--P);font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:4px 13px;border-radius:var(--rr);margin-bottom:14px}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;color:var(--T);line-height:1.15}
+h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-.02em}
+h3{font-size:1.1rem;font-weight:700}
+p{color:var(--M);line-height:1.7}
+.hl{background:linear-gradient(130deg,#1B6AFF 30%,#00C896);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* --- CARDS --- */
+.card{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);
+  box-shadow:var(--s0);transition:.25s}
+.card:hover{border-color:rgba(27,106,255,.3);box-shadow:var(--s2);transform:translateY(-3px)}
+
+/* --- CHIP --- */
+.chip{display:inline-flex;align-items:center;padding:3px 11px;border-radius:var(--rr);
+  font-size:11px;font-weight:700;letter-spacing:.04em}
+.cpb{background:var(--PBG);color:var(--P);border:1px solid var(--PBD)}
+.cpg{background:var(--GBG);color:var(--G);border:1px solid var(--GBD)}
+
+/* --- SECTION HEADER --- */
+.sh{text-align:center;margin-bottom:48px}
+.sh h2{margin-bottom:10px}
+.sh p{max-width:480px;margin:0 auto;font-size:15px}
+
+/* --- FOOTER --- */
+.foot{background:var(--W);border-top:1.5px solid var(--BD);padding:48px 0 24px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:32px}
+.fb .fw{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:var(--P);margin-bottom:10px}
+.fb p{font-size:13px;max-width:270px}
+.fc h5{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--D);margin-bottom:14px}
+.fc a{display:block;font-size:13px;color:var(--M);margin-bottom:8px;transition:.15s}
+.fc a:hover{color:var(--P)}
+.fb2{border-top:1.5px solid var(--BD);padding-top:18px;display:flex;justify-content:space-between}
+.fb2 p{font-size:12px;color:var(--D)}
+
+hr{border:none;border-top:1.5px solid var(--BD)}
+
+/* --- RESPONSIVE --- */
+@media(max-width:880px){.nlinks{display:none}}
+@media(max-width:720px){.fg{grid-template-columns:1fr;gap:24px}.fb2{flex-direction:column;gap:6px}}
+</style>
+<style>
+/* PAGE HERO */
+.phero{background:var(--W);border-bottom:1.5px solid var(--BD);padding:52px 0 40px}
+.phero h1{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:10px}
+.phero p{font-size:16px;max-width:500px}
+.chips{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+
+/* FEATURED */
+.vfeat{display:grid;grid-template-columns:1.5fr 1fr;background:var(--W);
+  border:1.5px solid var(--BD);border-radius:var(--rl);overflow:hidden;
+  box-shadow:var(--s1);margin-bottom:24px;transition:.25s}
+.vfeat:hover{box-shadow:var(--s2);border-color:rgba(27,106,255,.3)}
+.vt{position:relative;padding-bottom:56.25%;background:var(--S)}
+.vt iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.vfi{padding:36px;display:flex;flex-direction:column;justify-content:center}
+.vn{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--P);margin-bottom:10px}
+.vfi h2{font-size:20px;margin-bottom:12px;line-height:1.3}
+.vfi p{font-size:14px;margin-bottom:22px}
+
+/* GRID */
+.vg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vc{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);overflow:hidden;box-shadow:var(--s0);transition:.25s}
+.vc:hover{transform:translateY(-3px);box-shadow:var(--s2);border-color:rgba(27,106,255,.3)}
+.vns{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--P);text-transform:uppercase;margin-bottom:4px}
+.vi{padding:16px 18px 20px}
+.vi h4{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;line-height:1.4;margin-bottom:5px;color:var(--T)}
+.vi p{font-size:12px;color:var(--D);line-height:1.6}
+
+/* CTA */
+.cta{background:var(--W);border-top:1.5px solid var(--BD);padding:52px 0}
+.banner{background:linear-gradient(135deg,var(--PBG),var(--GBG));border:1.5px solid var(--PBD);
+  border-radius:var(--rl);padding:48px 36px;text-align:center;position:relative;overflow:hidden}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--P),var(--G))}
+.banner h3{font-family:'Sora',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px;color:var(--T)}
+.banner p{color:var(--M);max-width:370px;margin:0 auto 22px;font-size:14px}
+
+@media(max-width:880px){.vfeat{grid-template-columns:1fr}.vg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.vg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="ni">
+  <a href="../index.html" class="brand">
+    <span class="bw">AUCO</span><span class="bs"></span>
+    <span class="bl">Onboarding</span><span class="bdot"></span>
+  </a>
+  <div class="nlinks">
+    <a href="../index.html" class="nl">Inicio</a>
+    <a href="videos.html" class="nl active">Videos</a>
+    <a href="instructivos.html" class="nl">Instructivos</a>
+  </div>
+  <a href="https://app.auco.ai/signin" target="_blank" class="btn bp bsm">
+    Ir a la plataforma
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+  </a>
+</div></nav>
+
+<div class="pt">
+
+  <section class="phero">
+    <div class="ctr">
+      <div class="tag">▶ Videos tutoriales</div>
+      <h1>Aprende a usar <span class="hl">AUCO</span></h1>
+      <p>7 videos cortos que cubren las funciones esenciales — desde el constructor de documentos hasta firmar por WhatsApp.</p>
+      <div class="chips"><span class="chip cpb">7 videos</span><span class="chip cpg">Paso a paso</span></div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--BG)">
+    <div class="ctr">
+
+      <div class="vfeat">
+        <div class="vt"><iframe src="https://www.youtube.com/embed/VveD3WSG-Dk" title="Constructor de documentos" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vfi">
+          <div class="vn">Tutorial 01 · Destacado</div>
+          <h2>Cómo funciona el constructor de documentos</h2>
+          <p>Crea plantillas desde cero con el constructor visual. Configura campos, firmantes y condiciones de envío.</p>
+          <a href="https://youtu.be/VveD3WSG-Dk" target="_blank" class="btn bp" style="align-self:flex-start">Ver en YouTube ↗</a>
+        </div>
+      </div>
+
+      <div class="vg">
+        <div class="vc">
+          <div class="vt"><iframe src="https://www.youtube.com/embed/5x9i5FfBAtE" title="Adjuntos y firma" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="vi"><div class="vns">Tutorial 02</div><h4>Cómo solicitar adjuntos y firmar documentos</h4><p>Solicita archivos adjuntos y gestiona el proceso completo de firma.</p></div>
+        </div>
+        <div class="vc">
+          <div class="vt"><iframe src="https://www.youtube.com/embed/Z2Lkhs_hH24" title="Gestionar perfil" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="vi"><div class="vns">Tutorial 03</div><h4>Cómo gestionar tu perfil en Auco</h4><p>Configura tu logo, preferencias de marca y opciones de cuenta.</p></div>
+        </div>
+        <div class="vc">
+          <div class="vt"><iframe src="https://www.youtube.com/embed/Fe2lGDlomRk" title="Cargar documentos" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="vi"><div class="vns">Tutorial 04</div><h4>Cómo cargar documentos para firmar</h4><p>Sube tus propios PDFs y envíalos a firmar a tus destinatarios.</p></div>
+        </div>
+        <div class="vc">
+          <div class="vt"><iframe src="https://www.youtube.com/embed/kdOiVJCn3zg" title="Firma WhatsApp" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="vi"><div class="vns">Tutorial 05</div><h4>Cómo firmar un documento por WhatsApp</h4><p>Proceso completo de firma a través del canal más usado por tus clientes.</p></div>
+        </div>
+        <div class="vc">
+          <div class="vt"><iframe src="https://www.youtube.com/embed/neRuTyNDeco" title="Validación identidad" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="vi"><div class="vns">Tutorial 06</div><h4>Cómo funciona la validación de identidad manual</h4><p>Conoce el proceso de validación y cómo aplicarlo en tus flujos.</p></div>
+        </div>
+        <div class="vc">
+          <div class="vt"><iframe src="https://www.youtube.com/embed/Tom5WG9biQg" title="Firma email" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+          <div class="vi"><div class="vns">Tutorial 07</div><h4>Cómo firmar un documento por correo electrónico</h4><p>Guía completa desde la invitación hasta la confirmación de firma.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="ctr">
+      <div class="banner">
+        <h3>¿Prefieres leer los instructivos?</h3>
+        <p>Tenemos guías en PDF detalladas para cada función de la plataforma.</p>
+        <a href="instructivos.html" class="btn bp">Ver instructivos PDF →</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot"><div class="ctr">
+  <div class="fg">
+    <div class="fb"><div class="fw">AUCO</div><p>Firma documentos, valida identidad y automatiza procesos con IA. Hecho con ❤️ en Medellín, Colombia.</p></div>
+    <div class="fc"><h5>Recursos</h5><a href="videos.html">▶ Videos tutoriales</a><a href="instructivos.html">📄 Instructivos PDF</a><a href="https://docs.auco.ai/" target="_blank">🔗 Documentación API</a></div>
+    <div class="fc"><h5>Soporte</h5><a href="mailto:help@tech.auco.ai">✉ help@tech.auco.ai</a><a href="https://www.auco.ai/pricing/" target="_blank">💳 Planes y precios</a><a href="https://app.auco.ai/signin" target="_blank">→ Iniciar sesión</a></div>
+  </div>
+  <div class="fb2"><p>© 2025 AUCO · Todos los derechos reservados</p><p>Portal de bienvenida — Onboarding</p></div>
+</div></footer>
+</body></html>

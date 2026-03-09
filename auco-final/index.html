@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#F4F6FA;color:#1E2E45;overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* --- TOKENS --- */
+:root{
+  --P:#1B6AFF;--PD:#1250CC;--PBG:#EBF1FF;--PBD:rgba(27,106,255,.2);
+  --G:#00C896;--GBG:#E5FAF5;--GBD:rgba(0,200,150,.2);
+  --BG:#F4F6FA;--W:#fff;--S:#F0F4FB;
+  --BD:#E0E7F0;--T:#1E2E45;--M:#566A85;--D:#9AAABB;
+  --nav:66px;
+  --r:12px;--rl:18px;--rr:999px;
+  --s0:0 1px 3px rgba(30,46,69,.06);
+  --s1:0 2px 14px rgba(30,46,69,.09);
+  --s2:0 6px 30px rgba(30,46,69,.13);
+  --sb:0 4px 20px rgba(27,106,255,.3);
+}
+
+/* --- NAV --- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:999;
+  background:rgba(255,255,255,.98);border-bottom:1px solid var(--BD);box-shadow:var(--s0)}
+.ni{max-width:1120px;margin:0 auto;padding:0 24px;height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif}
+.bw{font-size:20px;font-weight:800;color:var(--P);letter-spacing:-.02em}
+.bs{width:1px;height:18px;background:var(--BD)}
+.bl{font-size:13px;font-weight:600;color:var(--M)}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--G);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
+.nlinks{display:flex;gap:2px}
+.nl{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:10px;
+  font-size:14px;font-weight:500;color:var(--M);transition:.15s}
+.nl:hover{color:var(--T);background:var(--BG)}
+.nl.active{color:var(--P);background:var(--PBG);font-weight:600}
+
+/* --- BUTTONS --- */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:var(--r);
+  font-family:'Sora',sans-serif;font-size:13px;font-weight:700;
+  border:none;cursor:pointer;transition:.2s;white-space:nowrap}
+.bp{background:var(--P);color:#fff;box-shadow:var(--sb)}
+.bp:hover{background:var(--PD);transform:translateY(-1px);box-shadow:0 6px 24px rgba(27,106,255,.38)}
+.bo{background:var(--W);color:var(--M);border:1.5px solid var(--BD);box-shadow:var(--s0)}
+.bo:hover{border-color:var(--P);color:var(--P);background:var(--PBG)}
+.bsm{padding:7px 15px;font-size:13px}
+.blg{padding:13px 26px;font-size:15px}
+
+/* --- LAYOUT --- */
+.ctr{max-width:1120px;margin:0 auto;padding:0 24px}
+.pt{padding-top:var(--nav)}
+.sec{padding:72px 0}
+.secw{background:var(--W)}
+.gr{background:linear-gradient(150deg,#EEF4FF 0%,#FAFBFF 45%,#E5FAF5 100%)}
+
+/* --- TYPOGRAPHY --- */
+.tag{display:inline-flex;align-items:center;gap:5px;background:var(--PBG);
+  border:1px solid var(--PBD);color:var(--P);font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:4px 13px;border-radius:var(--rr);margin-bottom:14px}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;color:var(--T);line-height:1.15}
+h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-.02em}
+h3{font-size:1.1rem;font-weight:700}
+p{color:var(--M);line-height:1.7}
+.hl{background:linear-gradient(130deg,#1B6AFF 30%,#00C896);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* --- CARDS --- */
+.card{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);
+  box-shadow:var(--s0);transition:.25s}
+.card:hover{border-color:rgba(27,106,255,.3);box-shadow:var(--s2);transform:translateY(-3px)}
+
+/* --- CHIP --- */
+.chip{display:inline-flex;align-items:center;padding:3px 11px;border-radius:var(--rr);
+  font-size:11px;font-weight:700;letter-spacing:.04em}
+.cpb{background:var(--PBG);color:var(--P);border:1px solid var(--PBD)}
+.cpg{background:var(--GBG);color:var(--G);border:1px solid var(--GBD)}
+
+/* --- SECTION HEADER --- */
+.sh{text-align:center;margin-bottom:48px}
+.sh h2{margin-bottom:10px}
+.sh p{max-width:480px;margin:0 auto;font-size:15px}
+
+/* --- FOOTER --- */
+.foot{background:var(--W);border-top:1.5px solid var(--BD);padding:48px 0 24px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:32px}
+.fb .fw{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:var(--P);margin-bottom:10px}
+.fb p{font-size:13px;max-width:270px}
+.fc h5{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--D);margin-bottom:14px}
+.fc a{display:block;font-size:13px;color:var(--M);margin-bottom:8px;transition:.15s}
+.fc a:hover{color:var(--P)}
+.fb2{border-top:1.5px solid var(--BD);padding-top:18px;display:flex;justify-content:space-between}
+.fb2 p{font-size:12px;color:var(--D)}
+
+hr{border:none;border-top:1.5px solid var(--BD)}
+
+/* --- RESPONSIVE --- */
+@media(max-width:880px){.nlinks{display:none}}
+@media(max-width:720px){.fg{grid-template-columns:1fr;gap:24px}.fb2{flex-direction:column;gap:6px}}
+</style>
+<style>
+/* HERO */
+.hero{min-height:88vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:80px 24px 64px}
+.hero h1{margin-bottom:18px}
+.hero .lead{font-size:17px;max-width:490px;margin:0 auto 34px}
+.hbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* QUICK CARDS */
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.qc{display:block;padding:32px;position:relative;overflow:hidden}
+.qc-bar{position:absolute;bottom:0;left:0;right:0;height:3px;opacity:0;transition:.25s;border-radius:0 0 var(--rl) var(--rl)}
+.qc:hover .qc-bar{opacity:1}
+.qico{font-size:32px;margin-bottom:14px}
+.qc h3{margin-bottom:8px;font-size:16px}
+.qc p{font-size:13px;margin-bottom:16px}
+
+/* STEPS */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.sc{padding:26px;position:relative;overflow:hidden}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--P);opacity:0;border-radius:var(--rl) var(--rl) 0 0;transition:.2s}
+.sc:hover::before{opacity:1}
+.sn{width:36px;height:36px;border-radius:50%;background:var(--PBG);color:var(--P);
+  font-family:'Sora',sans-serif;font-weight:800;font-size:14px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.sc h4{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px;color:var(--T)}
+.sc p{font-size:13px}
+
+/* STATS */
+.stg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.st{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);padding:28px 16px;
+  text-align:center;box-shadow:var(--s0);transition:.2s}
+.st:hover{box-shadow:var(--s2);transform:translateY(-2px)}
+.sv{font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;line-height:1;margin-bottom:7px}
+.sl{font-size:11px;color:var(--D);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+/* BANNER */
+.banner{background:linear-gradient(135deg,var(--PBG),var(--GBG));border:1.5px solid var(--PBD);
+  border-radius:var(--rl);padding:56px 40px;text-align:center;position:relative;overflow:hidden}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--P),var(--G))}
+.banner h2{margin-bottom:12px}
+.banner p{max-width:430px;margin:0 auto 28px;font-size:15px}
+.bbtns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+@media(max-width:900px){.qg,.sg{grid-template-columns:repeat(2,1fr)}.stg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.qg{grid-template-columns:1fr}.hero h1{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="ni">
+  <a href="index.html" class="brand">
+    <span class="bw">Onboarding</span><span class="bs"></span>
+    <span class="bl"></span><span class="bdot"></span>
+  </a>
+  <div class="nlinks">
+    <a href="index.html" class="nl active">Inicio</a>
+    <a href="pages/videos.html" class="nl">Videos</a>
+    <a href="pages/instructivos.html" class="nl">Instructivos</a>
+  </div>
+  <a href="https://app.auco.ai/signin" target="_blank" class="btn bp bsm">
+    Ir a la plataforma
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+  </a>
+</div></nav>
+
+<div class="pt">
+
+  <!-- HERO -->
+  <section class="sec gr hero">
+    <div>
+      <div class="tag">✦ Portal de bienvenida</div>
+      <h1>Bienvenido a <span class="hl">Onboarding</span>.<br>Todo para empezar.</h1>
+      <p class="lead">Videos tutoriales, instructivos paso a paso y todo el material para sacar el máximo provecho de la plataforma.</p>
+      <div class="hbtns">
+        <a href="pages/videos.html" class="btn bp blg">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg>
+          Ver tutoriales
+        </a>
+        <a href="pages/instructivos.html" class="btn bo blg">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Ver instructivos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESO RÁPIDO -->
+  <section class="sec">
+    <div class="ctr">
+      <div class="sh">
+        <div class="tag">⚡ Acceso rápido</div>
+        <h2>¿Qué quieres <span class="hl">hacer hoy</span>?</h2>
+        <p>Explora el material organizado por tipo de recurso.</p>
+      </div>
+      <div class="qg">
+        <a href="pages/videos.html" class="card qc">
+          <div class="qc-bar" style="background:var(--P)"></div>
+          <div class="qico">🎬</div>
+          <h3>Videos tutoriales</h3>
+          <p>7 videos cortos que explican las funciones clave de la plataforma.</p>
+          <span class="chip cpb">7 videos</span>
+        </a>
+        <a href="pages/instructivos.html" class="card qc">
+          <div class="qc-bar" style="background:var(--G)"></div>
+          <div class="qico">📄</div>
+          <h3>Instructivos PDF</h3>
+          <p>Guías paso a paso para consultar en cualquier momento.</p>
+          <span class="chip cpg">7 guías</span>
+        </a>
+        <a href="https://app.auco.ai/signin" target="_blank" class="card qc">
+          <div class="qc-bar" style="background:#8B5CF6"></div>
+          <div class="qico">🚀</div>
+          <h3>Ir a la plataforma</h3>
+          <p>Accede directamente a tu cuenta y empieza a usar AUCO.</p>
+          <span class="chip" style="background:#F3F0FF;color:#8B5CF6;border:1px solid rgba(139,92,246,.2)">app.auco.ai</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- STEPS -->
+  <section class="sec secw">
+    <div class="ctr">
+      <div class="sh">
+        <div class="tag">📍 Primeros pasos</div>
+        <h2>Cómo comenzar con <span class="hl">Auco</span></h2>
+      </div>
+      <div class="sg">
+        <div class="card sc"><div class="sn">1</div><h4>Crea tu cuenta</h4><p>Regístrate en auco.ai y confirma tu correo. Menos de 2 minutos.</p></div>
+        <div class="card sc"><div class="sn">2</div><h4>Configura tu organización</h4><p>Sube tu logo, configura tu marca y agrega a tu equipo.</p></div>
+        <div class="card sc"><div class="sn">3</div><h4>Envía tu primer documento</h4><p>Crea plantillas y envíalas a firmar por WhatsApp o email.</p></div>
+        <div class="card sc"><div class="sn">4</div><h4>Genera reportes</h4><p>Monitorea en tiempo real y descarga reportes detallados.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:32px">
+        <a href="pages/instructivos.html" class="btn bp">Ver instructivos →</a>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- STATS -->
+  <section class="sec">
+    <div class="ctr">
+      <div class="stg">
+        <div class="st"><div class="sv"><span class="hl">10M+</span></div><div class="sl">Validaciones de identidad</div></div>
+        <div class="st"><div class="sv"><span class="hl">1,000+</span></div><div class="sl">Clientes activos</div></div>
+        <div class="st"><div class="sv"><span class="hl">99.2%</span></div><div class="sl">Precisión antifraude</div></div>
+        <div class="st"><div class="sv"><span class="hl">6</span></div><div class="sl">Países</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- SOPORTE -->
+  <section class="sec secw">
+    <div class="ctr">
+      <div class="banner">
+        <div class="tag">💬 Soporte</div>
+        <h2>¿Necesitas ayuda?<br>Estamos para ti.</h2>
+        <p>Lunes a viernes de 8:00 a.m. a 5:00 p.m. Nuestro equipo te acompaña en cualquier consulta.</p>
+        <div class="bbtns">
+          <a href="mailto:help@tech.auco.ai" class="btn bp blg">✉ Escribir a soporte</a>
+          <a href="https://www.auco.ai/" target="_blank" class="btn bo blg">Sitio oficial ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot"><div class="ctr">
+  <div class="fg">
+    <div class="fb"><div class="fw">AUCO</div><p>Firma documentos, valida identidad y automatiza procesos con IA. Hecho con ❤️ en Medellín, Colombia.</p></div>
+    <div class="fc"><h5>Recursos</h5><a href="pages/videos.html">▶ Videos tutoriales</a><a href="pages/instructivos.html">📄 Instructivos PDF</a><a href="https://docs.auco.ai/" target="_blank">🔗 Documentación API</a></div>
+    <div class="fc"><h5>Soporte</h5><a href="mailto:help@tech.auco.ai">✉ help@tech.auco.ai</a><a href="https://www.auco.ai/pricing/" target="_blank">💳 Planes y precios</a><a href="https://app.auco.ai/signin" target="_blank">→ Iniciar sesión</a></div>
+  </div>
+  <div class="fb2"><p>© 2025 AUCO · Todos los derechos reservados</p><p>Portal de bienvenida — Onboarding</p></div>
+</div></footer>
+</body></html>

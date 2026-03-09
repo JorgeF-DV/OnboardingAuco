@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instructivos — AUCO Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:#F4F6FA;color:#1E2E45;overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* --- TOKENS --- */
+:root{
+  --P:#1B6AFF;--PD:#1250CC;--PBG:#EBF1FF;--PBD:rgba(27,106,255,.2);
+  --G:#00C896;--GBG:#E5FAF5;--GBD:rgba(0,200,150,.2);
+  --BG:#F4F6FA;--W:#fff;--S:#F0F4FB;
+  --BD:#E0E7F0;--T:#1E2E45;--M:#566A85;--D:#9AAABB;
+  --nav:66px;
+  --r:12px;--rl:18px;--rr:999px;
+  --s0:0 1px 3px rgba(30,46,69,.06);
+  --s1:0 2px 14px rgba(30,46,69,.09);
+  --s2:0 6px 30px rgba(30,46,69,.13);
+  --sb:0 4px 20px rgba(27,106,255,.3);
+}
+
+/* --- NAV --- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:999;
+  background:rgba(255,255,255,.98);border-bottom:1px solid var(--BD);box-shadow:var(--s0)}
+.ni{max-width:1120px;margin:0 auto;padding:0 24px;height:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif}
+.bw{font-size:20px;font-weight:800;color:var(--P);letter-spacing:-.02em}
+.bs{width:1px;height:18px;background:var(--BD)}
+.bl{font-size:13px;font-weight:600;color:var(--M)}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--G);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.55}}
+.nlinks{display:flex;gap:2px}
+.nl{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:10px;
+  font-size:14px;font-weight:500;color:var(--M);transition:.15s}
+.nl:hover{color:var(--T);background:var(--BG)}
+.nl.active{color:var(--P);background:var(--PBG);font-weight:600}
+
+/* --- BUTTONS --- */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:var(--r);
+  font-family:'Sora',sans-serif;font-size:13px;font-weight:700;
+  border:none;cursor:pointer;transition:.2s;white-space:nowrap}
+.bp{background:var(--P);color:#fff;box-shadow:var(--sb)}
+.bp:hover{background:var(--PD);transform:translateY(-1px);box-shadow:0 6px 24px rgba(27,106,255,.38)}
+.bo{background:var(--W);color:var(--M);border:1.5px solid var(--BD);box-shadow:var(--s0)}
+.bo:hover{border-color:var(--P);color:var(--P);background:var(--PBG)}
+.bsm{padding:7px 15px;font-size:13px}
+.blg{padding:13px 26px;font-size:15px}
+
+/* --- LAYOUT --- */
+.ctr{max-width:1120px;margin:0 auto;padding:0 24px}
+.pt{padding-top:var(--nav)}
+.sec{padding:72px 0}
+.secw{background:var(--W)}
+.gr{background:linear-gradient(150deg,#EEF4FF 0%,#FAFBFF 45%,#E5FAF5 100%)}
+
+/* --- TYPOGRAPHY --- */
+.tag{display:inline-flex;align-items:center;gap:5px;background:var(--PBG);
+  border:1px solid var(--PBD);color:var(--P);font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;padding:4px 13px;border-radius:var(--rr);margin-bottom:14px}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;color:var(--T);line-height:1.15}
+h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-.02em}
+h3{font-size:1.1rem;font-weight:700}
+p{color:var(--M);line-height:1.7}
+.hl{background:linear-gradient(130deg,#1B6AFF 30%,#00C896);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* --- CARDS --- */
+.card{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);
+  box-shadow:var(--s0);transition:.25s}
+.card:hover{border-color:rgba(27,106,255,.3);box-shadow:var(--s2);transform:translateY(-3px)}
+
+/* --- CHIP --- */
+.chip{display:inline-flex;align-items:center;padding:3px 11px;border-radius:var(--rr);
+  font-size:11px;font-weight:700;letter-spacing:.04em}
+.cpb{background:var(--PBG);color:var(--P);border:1px solid var(--PBD)}
+.cpg{background:var(--GBG);color:var(--G);border:1px solid var(--GBD)}
+
+/* --- SECTION HEADER --- */
+.sh{text-align:center;margin-bottom:48px}
+.sh h2{margin-bottom:10px}
+.sh p{max-width:480px;margin:0 auto;font-size:15px}
+
+/* --- FOOTER --- */
+.foot{background:var(--W);border-top:1.5px solid var(--BD);padding:48px 0 24px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:32px}
+.fb .fw{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:var(--P);margin-bottom:10px}
+.fb p{font-size:13px;max-width:270px}
+.fc h5{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--D);margin-bottom:14px}
+.fc a{display:block;font-size:13px;color:var(--M);margin-bottom:8px;transition:.15s}
+.fc a:hover{color:var(--P)}
+.fb2{border-top:1.5px solid var(--BD);padding-top:18px;display:flex;justify-content:space-between}
+.fb2 p{font-size:12px;color:var(--D)}
+
+hr{border:none;border-top:1.5px solid var(--BD)}
+
+/* --- RESPONSIVE --- */
+@media(max-width:880px){.nlinks{display:none}}
+@media(max-width:720px){.fg{grid-template-columns:1fr;gap:24px}.fb2{flex-direction:column;gap:6px}}
+</style>
+<style>
+.phero{background:var(--W);border-bottom:1.5px solid var(--BD);padding:52px 0 40px}
+.phero h1{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:10px}
+.phero p{font-size:16px;max-width:500px}
+.chips{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;padding:3px 11px;border-radius:var(--rr);font-size:11px;font-weight:700;letter-spacing:.04em}
+.cpb{background:var(--PBG);color:var(--P);border:1px solid var(--PBD)}
+.cpg{background:var(--GBG);color:var(--G);border:1px solid var(--GBD)}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+
+/* SIDEBAR */
+.side{position:sticky;top:calc(var(--nav) + 16px)}
+.sidebox{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);padding:18px;box-shadow:var(--s0)}
+.side-ttl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--D);margin-bottom:12px}
+.sb{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border-radius:10px;
+  font-size:13px;font-weight:500;color:var(--M);background:none;border:none;cursor:pointer;
+  text-align:left;transition:.15s;margin-bottom:2px}
+.sb:hover{background:var(--BG);color:var(--T)}
+.sb.on{background:var(--PBG);color:var(--P);font-weight:600}
+.sbn{width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:var(--S);color:var(--D);transition:.15s}
+.sb.on .sbn{background:var(--P);color:#fff}
+
+/* PDF CARDS */
+.plist{display:flex;flex-direction:column;gap:12px}
+.pc{background:var(--W);border:1.5px solid var(--BD);border-radius:var(--rl);overflow:hidden;box-shadow:var(--s0);transition:.25s}
+.pc:hover{border-color:rgba(27,106,255,.3);box-shadow:var(--s2)}
+.pc.open{border-color:rgba(27,106,255,.35);box-shadow:var(--s2)}
+.ph{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer}
+.pico{width:48px;height:48px;border-radius:10px;background:var(--PBG);
+  border:1px solid var(--PBD);display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0}
+.pm{flex:1;min-width:0}
+.pnum{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--P);text-transform:uppercase;margin-bottom:2px}
+.pt2{font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:var(--T);margin-bottom:2px;line-height:1.3}
+.pd{font-size:13px;color:var(--D);line-height:1.5}
+.pa{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.pdl{display:flex;align-items:center;gap:5px;padding:7px 13px;border-radius:8px;
+  border:1.5px solid var(--BD);background:var(--BG);color:var(--M);
+  font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;transition:.15s;font-family:'Sora',sans-serif}
+.pdl:hover{border-color:var(--P);color:var(--P);background:var(--PBG)}
+.chev{width:30px;height:30px;border-radius:8px;background:var(--BG);border:1.5px solid var(--BD);
+  display:flex;align-items:center;justify-content:center;color:var(--M);
+  font-size:13px;transition:.25s;flex-shrink:0}
+.pc.open .chev{transform:rotate(180deg);background:var(--PBG);border-color:var(--PBD);color:var(--P)}
+.pframe{display:none;border-top:1.5px solid var(--BD);background:var(--BG)}
+.pc.open .pframe{display:block}
+.pframe iframe{width:100%;height:580px;border:none;display:block}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:none}}
+@media(max-width:600px){.pa{flex-direction:column;align-items:flex-end}.ph{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="ni">
+  <a href="../index.html" class="brand">
+    <span class="bw">AUCO</span><span class="bs"></span>
+    <span class="bl">Onboarding</span><span class="bdot"></span>
+  </a>
+  <div class="nlinks">
+    <a href="../index.html" class="nl">Inicio</a>
+    <a href="videos.html" class="nl">Videos</a>
+    <a href="instructivos.html" class="nl active">Instructivos</a>
+  </div>
+  <a href="https://app.auco.ai/signin" target="_blank" class="btn bp bsm">
+    Ir a la plataforma
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+  </a>
+</div></nav>
+
+<div class="pt">
+
+  <section class="phero">
+    <div class="ctr">
+      <div class="tag">📄 Instructivos</div>
+      <h1>Guías paso a paso <span class="hl">en PDF</span></h1>
+      <p>Todos los instructivos para configurar y usar AUCO. Ábrelos aquí o descárgalos.</p>
+      <div class="chips"><span class="chip cpb">7 instructivos</span><span class="chip cpg">Formato PDF</span></div>
+    </div>
+  </section>
+
+  <section class="sec" style="background:var(--BG)">
+    <div class="ctr">
+      <div class="layout">
+
+        <aside class="side">
+          <div class="sidebox">
+            <div class="side-ttl">En esta sección</div>
+            <button class="sb on" onclick="toggle(0,this)"><span class="sbn">1</span>🚀 Crear tu cuenta</button>
+            <button class="sb" onclick="toggle(1,this)"><span class="sbn">2</span>👥 Agregar usuarios</button>
+            <button class="sb" onclick="toggle(2,this)"><span class="sbn">3</span>🔔 Recordatorio manual</button>
+            <button class="sb" onclick="toggle(3,this)"><span class="sbn">4</span>🎨 Logo en documentos</button>
+            <button class="sb" onclick="toggle(4,this)"><span class="sbn">5</span>📋 Certificado trazabilidad</button>
+            <button class="sb" onclick="toggle(5,this)"><span class="sbn">6</span>📊 Generar reportes</button>
+            <button class="sb" onclick="toggle(6,this)"><span class="sbn">7</span>🪪 Tips de validación</button>
+          </div>
+          <div style="margin-top:12px;background:var(--PBG);border:1.5px solid var(--PBD);border-radius:var(--rl);padding:18px">
+            <p style="font-size:13px;margin-bottom:12px">¿Prefieres aprender en video?</p>
+            <a href="videos.html" class="btn bp bsm" style="width:100%;justify-content:center">Ver videos ▶</a>
+          </div>
+        </aside>
+
+        <div class="plist" id="plist">
+
+          <div class="pc" id="p0">
+            <div class="ph" onclick="toggle(0)">
+              <div class="pico">🚀</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 01</div>
+                <div class="pt2">¡Crear tu cuenta en Auco es muy fácil!</div>
+                <div class="pd">Registro paso a paso: formulario, verificación y acceso al dashboard.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/crear-cuenta.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/crear-cuenta.pdf" loading="lazy"></iframe></div>
+          </div>
+
+          <div class="pc" id="p1">
+            <div class="ph" onclick="toggle(1)">
+              <div class="pico">👥</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 02</div>
+                <div class="pt2">¿Cómo agregar un usuario a tu organización?</div>
+                <div class="pd">Invita y gestiona miembros del equipo desde la cuenta administradora.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/agregar-usuario.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/agregar-usuario.pdf" loading="lazy"></iframe></div>
+          </div>
+
+          <div class="pc" id="p2">
+            <div class="ph" onclick="toggle(2)">
+              <div class="pico">🔔</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 03</div>
+                <div class="pt2">¿Cómo enviar un recordatorio manual?</div>
+                <div class="pd">Envía recordatorios a firmantes pendientes desde 'Mis documentos'.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/recordatorio-manual.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/recordatorio-manual.pdf" loading="lazy"></iframe></div>
+          </div>
+
+          <div class="pc" id="p3">
+            <div class="ph" onclick="toggle(3)">
+              <div class="pico">🎨</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 04</div>
+                <div class="pt2">¿Cómo poner mi logo en documentos y emails?</div>
+                <div class="pd">Personaliza la marca de tu empresa en todos los documentos y correos.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/logo-documentos.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/logo-documentos.pdf" loading="lazy"></iframe></div>
+          </div>
+
+          <div class="pc" id="p4">
+            <div class="ph" onclick="toggle(4)">
+              <div class="pico">📋</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 05</div>
+                <div class="pt2">¿Cómo obtener el certificado de trazabilidad?</div>
+                <div class="pd">Descarga el certificado de trazabilidad de cualquier documento firmado.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/certificado-trazabilidad.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/certificado-trazabilidad.pdf" loading="lazy"></iframe></div>
+          </div>
+
+          <div class="pc" id="p5">
+            <div class="ph" onclick="toggle(5)">
+              <div class="pico">📊</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 06</div>
+                <div class="pt2">Cómo generar reportes</div>
+                <div class="pd">Genera informes generales y de plantillas con filtros por fecha.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/generar-reportes.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/generar-reportes.pdf" loading="lazy"></iframe></div>
+          </div>
+
+          <div class="pc" id="p6">
+            <div class="ph" onclick="toggle(6)">
+              <div class="pico">🪪</div>
+              <div class="pm">
+                <div class="pnum">Instructivo 07</div>
+                <div class="pt2">Tips para validación de identidad</div>
+                <div class="pd">Instrucciones para capturar fotos efectivas del documento y rostro.</div>
+              </div>
+              <div class="pa">
+                <a href="../assets/pdfs/tips-validacion.pdf" download class="pdl">⬇ Descargar</a>
+                <div class="chev">▾</div>
+              </div>
+            </div>
+            <div class="pframe"><iframe src="../assets/pdfs/tips-validacion.pdf" loading="lazy"></iframe></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot"><div class="ctr">
+  <div class="fg">
+    <div class="fb"><div class="fw">AUCO</div><p>Firma documentos, valida identidad y automatiza procesos con IA. Hecho con ❤️ en Medellín, Colombia.</p></div>
+    <div class="fc"><h5>Recursos</h5><a href="videos.html">▶ Videos tutoriales</a><a href="instructivos.html">📄 Instructivos PDF</a><a href="https://docs.auco.ai/" target="_blank">🔗 Documentación API</a></div>
+    <div class="fc"><h5>Soporte</h5><a href="mailto:help@tech.auco.ai">✉ help@tech.auco.ai</a><a href="https://www.auco.ai/pricing/" target="_blank">💳 Planes y precios</a><a href="https://app.auco.ai/signin" target="_blank">→ Iniciar sesión</a></div>
+  </div>
+  <div class="fb2"><p>© 2025 AUCO · Todos los derechos reservados</p><p>Portal de bienvenida — Onboarding</p></div>
+</div></footer>
+
+<script>
+let cur = null;
+const sbs = document.querySelectorAll('.sb');
+function toggle(i, btn) {
+  const cards = document.querySelectorAll('.pc');
+  if (cur === i) {
+    cards[i].classList.remove('open');
+    sbs.forEach(b => b.classList.remove('on'));
+    cur = null;
+  } else {
+    if (cur !== null) cards[cur].classList.remove('open');
+    cards[i].classList.add('open');
+    sbs.forEach(b => b.classList.remove('on'));
+    sbs[i].classList.add('on');
+    cur = i;
+    setTimeout(() => cards[i].scrollIntoView({behavior:'smooth',block:'nearest'}), 80);
+  }
+}
+</script>
+</body></html>
